@@ -1,10 +1,10 @@
-﻿namespace TaskManager.Repositories.Interfaces
+﻿using TaskManager.Models;
+
+public interface ITaskRepository
 {
-    public interface ITaskRepository
-    {
-        void AddTask(Task task);
-        void RemoveTask(int taskId);
-        void UpdateTask(Task task);
-        IEnumerable<Task> ListTasks();
-    }
+    Task<IEnumerable<TaskViewModel>> ListTasks();
+    Task<TaskViewModel> GetTaskByIdAsync(int id);
+    Task<TaskViewModel> AddTask(TaskViewModel task);
+    Task<TaskViewModel> UpdateTask(TaskViewModel task);
+    Task<TaskViewModel> RemoveTask(int id);
 }
