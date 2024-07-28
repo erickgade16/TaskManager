@@ -1,7 +1,5 @@
 ﻿using TaskManager.Models;
 using TaskManager.Services.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace TaskManager.Services
 {

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TaskViewModel = TaskManager.Models.TaskViewModel;
+﻿using TaskViewModel = TaskManager.Models.TaskViewModel;
 
 public class TaskRepository : ITaskRepository
 {

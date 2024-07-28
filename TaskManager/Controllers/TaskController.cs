@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskViewModel = TaskManager.Models.TaskViewModel;
 using TaskManager.Services.Interfaces;
-using System.Threading.Tasks;
 
 namespace TaskManager.Controllers
 {
@@ -23,7 +22,7 @@ namespace TaskManager.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
         }
 
@@ -35,29 +34,19 @@ namespace TaskManager.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(TaskViewModel task)
         {
-            try
+            if (ModelState.IsValid)
             {
-                await _serviceTask.CreateTask(task);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _serviceTask.CreateTask(task);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
             }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Edit(TaskViewModel task)
-        {
-            try
-            {
-                await _serviceTask.UpdateTask(task);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return View(task);
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -73,10 +62,26 @@ namespace TaskManager.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
-            
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(TaskViewModel task)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _serviceTask.UpdateTask(task);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception)
+                {
+                    return View("Error");
+                }
+            }
+            return View(task);
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -92,10 +97,8 @@ namespace TaskManager.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return View("Error");
             }
-            
         }
 
         [HttpPost, ActionName("Delete")]
@@ -108,7 +111,7 @@ namespace TaskManager.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return View("Error");
             }
         }
     }

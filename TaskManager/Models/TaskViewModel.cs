@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using TaskManager.Attributes;
 
 namespace TaskManager.Models
 {
@@ -12,11 +12,13 @@ namespace TaskManager.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Description is required")]
-        [StringLength(500, ErrorMessage = "Description cannot be longer than 500 characters")]
+        [StringLength(300, ErrorMessage = "Description cannot be longer than 300 characters")]
         public string Description { get; set; }
 
 
         [Required(ErrorMessage = "Due Date is required")]
+        [FutureDate(ErrorMessage = "Due date must be greater than today's date")]
+        [Display(Name = "Expiration Date")]
         public DateTime DueDate { get; set; }
 
         [Required(ErrorMessage = "Priority is required")]
