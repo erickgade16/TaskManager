@@ -131,7 +131,18 @@ public class TaskRepository : ITaskRepository
 - **Tratamento de Exceções:** Cada ação do controlador possui tratamento de exceções para exibir uma página de erro amigável.
 - **Validação de Dados:** Utilização do `ModelState.IsValid` para verificar a validade dos dados antes de processar as operações de CRUD.
 
+<a name="testes-unitarios"></a>
+
+## 8. Testes Unitários
+Os testes unitários foram implementados para garantir a qualidade e a funcionalidade adequada do código. Eles cobrem as seguintes áreas:
+
+Testes dos Serviços (Services): Verificam a lógica de negócios implementada na camada de serviço. São realizados testes para garantir que os métodos do TaskService funcionem conforme esperado.
+
+Testes dos Repositórios (Repositories): Garantem que a persistência dos dados está funcionando corretamente. Testes são realizados para verificar as operações de adição, remoção e atualização de tarefas no TaskRepository.
+
+Testes dos Controladores (Controllers): Asseguram que as ações do TaskController retornam as respostas esperadas e lidam corretamente com os dados das tarefas.
+
 <a name="consideracoes-finais"></a>
-## 8. Considerações Finais
+## 9. Considerações Finais
 
 Esta documentação fornece uma visão geral da arquitetura do projeto de gestão de tarefas, explicando os componentes principais e as decisões de design. Futuras melhorias podem incluir a implementação de um banco de dados persistente e a adição de funcionalidades avançadas, como autenticação de usuários e notificações.
