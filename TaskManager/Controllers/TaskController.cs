@@ -51,6 +51,7 @@ namespace TaskManager.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            // Obtém a tarefa com base no ID fornecido
             try
             {
                 var task = await _serviceTask.GetTaskById(id);
@@ -71,6 +72,7 @@ namespace TaskManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Atualiza a tarefa com as novas informações
                 try
                 {
                     await _serviceTask.UpdateTask(task);
