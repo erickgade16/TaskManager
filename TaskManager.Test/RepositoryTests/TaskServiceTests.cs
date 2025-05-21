@@ -68,7 +68,7 @@ namespace TaskManager.Test.RepositoryTests
         [Fact]
         public async Task DeleteTask_ShouldCallRepositoryRemoveTask()
         {
-            _mockRepository.Setup(repo => repo.RemoveTask(1)).ReturnsAsync((TaskViewModel)null);
+            _mockRepository.Setup(repo => repo.RemoveTask(1)).ReturnsAsync((TaskViewModel?)null);
 
             await _service.DeleteTask(1);
 
