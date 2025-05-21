@@ -8,8 +8,12 @@ public class TaskRepository : ITaskRepository
     public Task<TaskViewModel> GetTaskByIdAsync(int id)
     {
         var task = _tasks.FirstOrDefault(t => t.Id == id);
+        if (task == null)
+            throw new KeyNotFoundException($"Task with id {id} not found.");
+
         return Task.FromResult(task);
     }
+
 
     public Task<TaskViewModel> AddTask(TaskViewModel task)
     {
@@ -18,30 +22,29 @@ public class TaskRepository : ITaskRepository
         return Task.FromResult(task);
     }
 
-    public Task<TaskViewModel?> RemoveTask(int taskId)
+    public Task<TaskViewModel> RemoveTask(int taskId)
     {
         var task = _tasks.FirstOrDefault(t => t.Id == taskId);
-        if (task != null)
-        {
-            _tasks.Remove(task);
-            return Task.FromResult(task);
-        }
-        return Task.FromResult<TaskViewModel>(null);
+        if (task == null)
+            throw new KeyNotFoundException($"Task with id {taskId} not found.");
+
+        _tasks.Remove(task);
+        return Task.FromResult(task);
     }
 
     public Task<TaskViewModel> UpdateTask(TaskViewModel task)
     {
         var existingTask = _tasks.FirstOrDefault(t => t.Id == task.Id);
-        if (existingTask != null)
-        {
-            existingTask.Title = task.Title;
-            existingTask.Description = task.Description;
-            existingTask.DueDate = task.DueDate;
-            existingTask.Priority = task.Priority;
-            return Task.FromResult(existingTask);
-        }
-        return Task.FromResult<TaskViewModel>(null);
+        if (existingTask == null)
+            throw new KeyNotFoundException($"Task with id {task.Id} not found.");
+
+        existingTask.Title = task.Title;
+        existingTask.Description = task.Description;
+        existingTask.DueDate = task.DueDate;
+        existingTask.Priority = task.Priority;
+        return Task.FromResult(existingTask);
     }
+
 
     public Task<IEnumerable<TaskViewModel>> ListTasks()
     {
