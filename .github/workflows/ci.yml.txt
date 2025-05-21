@@ -1,0 +1,29 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout do código
+      uses: actions/checkout@v3
+
+    - name: 🛠️ Setup do .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: 📦 Restaurar dependências
+      run: dotnet restore
+
+    - name: 🧪 Rodar testes
+      run: dotnet test --no-restore --verbosity normal
+
+    - name: 🏗️ Build do projeto
+      run: dotnet build --no-restore --configuration Release
