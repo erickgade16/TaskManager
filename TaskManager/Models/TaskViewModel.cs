@@ -9,11 +9,11 @@ namespace TaskManager.Models
 
         [Required(ErrorMessage = "Title is required")]
         [StringLength(50, ErrorMessage = "Title cannot be longer than 100 characters")]
-        public string Title { get; set; }
+        public  string? Title { get; set; }
 
         [Required(ErrorMessage = "Description is required")]
         [StringLength(300, ErrorMessage = "Description cannot be longer than 300 characters")]
-        public string Description { get; set; }
+        public  string? Description { get; set; }
 
 
         [Required(ErrorMessage = "Due Date is required")]

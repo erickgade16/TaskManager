@@ -17,10 +17,11 @@ namespace TaskManager.Services
             return _repository.ListTasks();
         }
 
-        public Task<TaskViewModel> GetTaskById(int id)
+        public Task<TaskViewModel?> GetTaskById(int id)
         {
             return _repository.GetTaskByIdAsync(id);
         }
+
 
         public Task CreateTask(TaskViewModel task)
         {
