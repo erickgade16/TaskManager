@@ -18,7 +18,7 @@ public class TaskRepository : ITaskRepository
         return Task.FromResult(task);
     }
 
-    public Task<TaskViewModel> RemoveTask(int taskId)
+    public Task<TaskViewModel?> RemoveTask(int taskId)
     {
         var task = _tasks.FirstOrDefault(t => t.Id == taskId);
         if (task != null)
